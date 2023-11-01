@@ -1,0 +1,220 @@
+/*******************************************************************************
+* HW 3: BST
+* Comp 15 Fall 2023
+* README
+* Author: Federico Sorcini, fsorci01
+*******************************************************************************/
+
+
+Program Purpose:
+----------------
+
+    The purpose of this program is to create Binary Search Trees that can store 
+    integers while maintaining BST invariants. These Binary Search Trees can be 
+    modified in mutliple different ways including insertion of nodes and 
+    removal of nodes. Users can also check whether the BST contains certain 
+    values. The program also has the ability to print the structure of the BST.
+    
+
+Compile/run:
+------------
+
+    Compile and Run using the command "./bst"
+    
+
+
+Acknowledgments:
+----------------
+
+    The lectures on Canvas, the BST lab we worked on, stackexchange, 
+    GeeksforGeeks.
+    
+
+Files:
+------
+
+    BinarySearchTree.h: Header file for the BinarySearchTree class.
+
+    BinarySearchTree.cpp: Implementation of the BinarySearchTree class.
+
+    main.cpp: The main program implementation.
+
+    unit_tests.cpp: A unit testing file for the BinarySearchTree Class.
+
+    Makefile: File to compile the program.
+
+
+Data Structures:
+----------------
+
+    This main data structure of this lab is a Binary Search Tree, which is a 
+    tree that uses invariants to store data. Specifically, any value that is 
+    added to the tree is placed according to whether it is larger or smaller 
+    than any given value it encounters in the tree. The benefit of this 
+    structure is that searching for a value is easy and quicker than other 
+    data structures. For example, comparing the time complexity for searching 
+    through a linked list with n elements with that of searching through a 
+    BST of the same size, at worst (when the elements are inserted into the 
+    BST in perfectly ascending/descending order), they would be the same, but 
+    at best (BST is perfectly evenly distributed), O(linkedlist):O(BST) = 
+    O(n):O(log2n).
+
+
+Testing:
+--------
+
+    I tested the LinkedList program using the "unit_tests.cpp" file. I created 
+    sections representing different conditions/scenarios within the BST, then
+    I tested how each function would behave in those conditions/scenarios. The
+    three main functions I tested repeatedly were insert, remove, and contains.
+    I tested the other smaller functions that were more used as helper 
+    functions either by calling larger functions that depended on their 
+    functionality, or by calling them as checks that the other functions had
+    worked properly.
+
+    The part that I tested and had to debug most thoroughly was the portion of
+    the removal function that needed to handle the case in which a node had to
+    be replaced, that node had 2 children, and the replacement node had 1 child.
+    For example:
+                                        .-- 85
+                                    .-- 66
+                                    |   |    .-- 54
+                                    |    `-- 51
+                                .-- 46
+                                |    `-- 34
+                            -> 12
+                                `-- 4
+    
+    If I want to remove 46 from this tree, it has 2 children, which means that 
+    it has to be replaced with a node that is within one of its two subtrees.
+    To follow the guidance of the assignment, I would have to find the smallest
+    value within the right subtree of the node I want to remove. In this tree, 
+    that value is 51. But 51 has another child (54), which means that I can't 
+    just move 51 to where 46 was. I first have to make 54 be 51's parent's
+    left child, then make 51's left and right children be 34 and 66 
+    respectively (because they are 46's children), then make 12's right child 
+    be 51, and only then can I delete 46. The resulting tree would look like
+    this:
+                                        .-- 85
+                                    .-- 66
+                                    |    `-- 54
+                                .-- 51
+                                |    `-- 34
+                            -> 12
+                                `-- 4
+
+
+Hours Spent:
+------------
+
+    I spent a total of about 10 hours on this assignment.
+
+Questions:
+----------------------
+
+   1. Will remove() use find_min() or find_max()?
+        -It will only use find_min(), because the only condition in which 
+        either will have to be called is when a node that is to be removed
+        has 2 children, and has to be replaced with the minimum value in the 
+        right subtree of the node that is to be removed. To do this, find_min()
+        would be called on the right child of the node that is to be removed.
+    
+    2. Can privately defined find_min() or find_max() return a value that does 
+        not point to a valid node?
+        -No. It should not. If either one is called on a child of a node that 
+        does not exist (is called on nullptr), it should return the node that 
+        it was called from. For example, if find_max() is called on node A's 
+        right child, but node A does not have a right child, then node A is 
+        the largest value in the subtree, and find_max() should return node A.
+
+    3. If you answered no to Q2, then then consider the tree below and specify 
+    the node returned when find_min() is invoked on the right child of the 
+    node with value of 5:
+                                        2
+                                      /   \
+                                     1     5
+                                    /     /
+                                   0     4
+        -There are only 2 conditions in which the private find_min() function
+        is called. First, if the user calls find_min() on the entire tree, and 
+        second, if the user removes a node with two children. In the first 
+        case, the private find_min() function can only be invoked starting with
+        the root of the entire tree. Therefore, it would never be invoked on 
+        the right child of 5, because it is only ever called on the left child 
+        of any given node. In the second case, the private find_min() function 
+        would only be invoked on the right child of the node to be removed if 
+        the node had two children, so it would never be invoked on a node that
+        did not exist. Therefore, the above example and scenario is not a valid 
+        representation of what could happen while using this program.
+
+    4. Write pseudocode for your private find_min() function
+        
+        Pseudocode:
+        
+        find node with smallest value in tree whose root is(a node) {
+            IF (left child of this node is null) {
+                return: this node
+            } ELSE {
+                return: find node with smallest value in tree whose root 
+                    is(this node's left child);
+            }
+        }
+
+        Summary:
+        Recursively move to the left until you reach a node that has no left 
+        child, then return the node.
+
+    5. Write pseudocode for your private find_max() function.
+        
+        Pseudocode:
+
+        find node with largest value in tree with root (a node) {
+            IF (right child of this node is null) {
+                return: this node
+            } ELSE {
+                return: find node with largest value in tree with root 
+                    (this node's right child);
+            }
+        }
+
+        Summary:
+        Recursively move to the right until you reach a node that has no right 
+        child, then return the node.
+
+    6. Write pseudocode for your private post_order_delete() function.
+
+        Pseudocode:
+
+        find node to delete in tree with root (a node) {
+            IF (this node is NOT null) {
+                find node to delete in tree with root (this node's left child)
+                find node to delete in tree with root (this node's right child)
+                delete this node
+            }
+        }
+
+        Summary:
+        Recursively move to the left or right as far as you can until you reach
+        a node that has no left or right child (a leaf), and delete that node. 
+        On the way out of the recursive loop, the parents of child nodes that
+        get deleted are also then deleted as they no longer have children.
+
+
+
+
+Other Questions:
+----------------------
+    
+    1.  Anything that involved adding or removing elements was easier 
+        to implement, because we didn't have to consider shifting the 
+        other elements in the list around to "make room" for the insterted 
+        ones, for example.
+
+    2.  It was more difficult to get to the index that was given, in order
+        to perform some action at that given index. This is because in 
+        order to do so, we have to iterate through the linked list, 
+        rather than just goinf directly to that index.
+
+    3.  They shouldn't have to make changes as on the client side,
+        they should be interacting with them exactly the same way.
+    

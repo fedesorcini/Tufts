@@ -1,0 +1,118 @@
+/*******************************************************************************
+* HW 1: ArrayList
+* Comp 15 Fall 2023
+* README
+* Author: Federico Sorcini, fsorci01
+*******************************************************************************/
+
+
+Program Purpose:
+---------------
+
+    The purpose of this program is to create CharArrayLists that can store 
+    multiple chars. These CharArrayLists can be modified in mutliple different ways.
+
+Compile/run:
+-----------
+
+    Compile and Run using the command "unit_tests"
+
+
+Acknowledgments:
+---------------
+
+    The lectures on Canvas, and stackexchange!
+
+Files:
+-----
+
+    CharArrayList.h: Header file for the CharArrayList class.
+
+    ArrayList.cpp: Implementation of the CharArrayList class.
+
+    unit_tests.cpp: A unit testing file for the CharArrayList Class.
+
+    Makefile: File to compile the program.
+
+
+Data Structures:
+---------------
+
+    This main data structure of this lab is an ArrayList, which is a 
+    dynamically expanding array. The benefit of this structure is that we have 
+    direct access to each element within the array. If we reach its capacity, 
+    we can create a new array that is larger, copy the information into it, and 
+    destroy the old one. This allows us to easily adjust whenever it fills up.
+
+
+Testing:
+-------
+
+    I tested the ArrayList program using the "unit_tests.cpp" file. For 
+    each function I defined, I tested it using a perfectly normal case, as 
+    well as a case that might cause an error. I ensured that any errors would be 
+    accounted for, and anything that could be seen as user error would send an 
+    error message.
+
+
+Hours Spent:
+-------
+
+    I spent a total of about 12 hours on this assignment.
+
+Questions About Timer:
+-------
+
+   1. Categories of Operations (each 100 times)
+        A. Insertion
+            1. pushAtBack: 3875
+            2. insertAtMiddle: 2315541
+            3. pushAtFront: 5082958
+        B. Removal
+            1. popFromBack: 833
+            2. removeAtMiddle: 1487583
+            3. popFromFront: 3568458
+        C. Access
+            1. first: 625
+            2. last: 708
+            3. elementAtMiddle: 708
+
+    2. Rankings Discussion
+        -The insertion and removal at the back are much short than the at the 
+        front or at the middle because they require no adjustment in terms of 
+        the other elements of the arraylist. If you want to do something at the 
+        front or in the middle, you have to move the other chars to make room for 
+        the one you want to insert or delete.
+        -For the access, it doesn't matter that much where in the array you want 
+        to access it, because there are no operations to perform on it. The only 
+        one that's a bit quicker is the first, because it is what the original 
+        pointer is pointing at.      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

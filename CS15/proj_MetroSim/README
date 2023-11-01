@@ -1,0 +1,136 @@
+/**********************************************************
+* Project 1: Metro Simulator
+* CS 15
+* README
+* Author: Federico Sorcini, fsorci01
+*********************************************************/
+
+Compile/run:
+------------
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+----------------
+     To simulate a train moving around a track, with passengers that 
+     board at certain stations, and leave at others. The simulation can 
+     be controlled either with commands input by the user, or with commands 
+     from a file.
+
+
+Acknowledgements: 
+-----------------
+     -The lectures from class
+     -Stackexchange
+     -GeeksforGeeks
+     -cpp reference
+     -The other assignments for thsi class that I have completed
+
+Files: 
+------
+
+main.cpp:
+     Initiation of the program. Takes user input and begins the simulation.
+     Exits the program when the simulation ends.
+
+MetroSim.cpp:
+     Implementation of the MetroSim class. This class represents the 
+     majority of the simulation and anything that can happen within it. 
+     It initializes both the train and the stations and allows for the 
+     user to control the simulation.
+
+MetroSim.h:
+     Header file for MetroSim.cpp.
+
+stations.txt:
+     An example/reference text file containing the list of stations to 
+     be used in the simulation.
+
+test_commands.txt:
+     An example/reference text file containing many commands to be used 
+     in the simulation.
+
+the_metroSim:
+     The reference program with which to compare the output of my own code.
+
+PassengerQueue.cpp:
+     Implementation of the PassengerQueue class. This class is used to 
+     represent stations in the simulation, as well as cars on the train.
+
+PassengerQueue.h:
+     Header file for PassengerQueue.cpp.
+
+Passenger.cpp:
+     Implementation of the Passenger class. 
+
+Passenger.h:
+     Header file for Passenger.cpp.
+
+Makefile:
+     File containing the rules to compile the program and its components.
+
+Data Structures:
+----------------
+     -lists (to represent queues)
+     -vectors (to represent stacks)
+
+
+Testing:
+--------
+
+Process:
+     -First, I ensured that the Passnger and PassengerQueue classes worked 
+     properly. They were fairly simple to implement, so this was pretty quick.
+     -Second, I wrote and tested the functions that were responsible for 
+     carrying out a given command (for example: addPassenger()). These were a 
+     bit more challenging to write and test as they involved keeping track of 
+     multiple things at once.
+     -Third, I wrote and tested the functions that were responsible for 
+     reading files and processing commands. Again, these proved to be 
+     difficult as I had to go back and edit other functions they they 
+     depended on.
+     -Fourth, I tested the functionality of the entire program using edge 
+     cases as inputs, and comparing the output of program to that of the 
+     reference program.
+
+Bugs: 
+     While testing, the main bugs that I encountered were related to 
+     the formatting of the output, along with the order in which components 
+     of the simulation were created or sent to the output. For example, it 
+     took me a while to figure out how to make it so that the output.txt file 
+     was only created if the stationsfile was valid and if the commandsfile 
+     was valid (if the user specified the commandsfile).
+
+Base Cases:
+     -Adding a passenger
+     -Moving the train
+     -Printing the state of the simulation
+     -Ending the simulation
+     -Reading in commands from a command file
+
+Edge Cases and Different Inputs:
+     -Invalid command-line arguments
+     -Invalid commands
+     -Adding multiple passengers
+     -Adding passenger with invalid stations
+     -Moving the train when it was at the "last" station
+     -Moving the train with different numbers of passengers
+     -Reading in commands from a command file that does not end with "m f"
+     -Entering files that don't exist
+     -Entering files that are empty
+
+Part that you found most difficult:
+-----------------------------------
+
+     I found that getting the program to read files in was the most 
+     challenging aspect of this assignment. Specifically, making sure 
+     that commands from the commandfile were read in correctly, while 
+     maintaining the ability for the user to enter in their own commands.
+
+Time Spent: 
+------------
+
+30 hours

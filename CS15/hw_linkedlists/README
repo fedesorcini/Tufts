@@ -1,0 +1,112 @@
+/*******************************************************************************
+* HW 2: LinkedList
+* Comp 15 Fall 2023
+* README
+* Author: Federico Sorcini, fsorci01
+*******************************************************************************/
+
+
+Program Purpose:
+----------------
+
+    The purpose of this program is to create CharLinkedLists that can store 
+    multiple chars. These CharLinkedLists can be modified in mutliple different ways.
+    
+
+Compile/run:
+------------
+
+    Compile and Run using the command "unit_tests"
+    
+
+
+Acknowledgments:
+----------------
+
+    The lectures on Canvas, and stackexchange!
+    
+
+Files:
+------
+
+    CharLinkedList.h: Header file for the CharLinkedList class.
+
+    LinkedList.cpp: Implementation of the CharLinkedList class.
+
+    unit_tests.cpp: A unit testing file for the CharLinkedList Class.
+
+    Makefile: File to compile the program.
+
+
+Data Structures:
+----------------
+
+    This main data structure of this lab is an LinkedList, which is a 
+    dynamically expanding Linked. The benefit of this structure is that we have 
+    direct access to each element within the Linked. If we reach its capacity, 
+    we can create a new Linked that is larger, copy the information into it, and 
+    destroy the old one. This allows us to easily adjust whenever it fills up.
+
+
+Testing:
+--------
+
+    I tested the LinkedList program using the "unit_tests.cpp" file. For 
+    each function I defined, I tested it using a perfectly normal case, as 
+    well as a case that might cause an error. I ensured that any errors would be 
+    accounted for, and anything that could be seen as user error would send an 
+    error message.
+    
+
+
+Hours Spent:
+------------
+
+    I spent a total of about 13 hours on this assignment.
+
+Questions About Timer:
+----------------------
+
+   1. Categories of Operations (each 100 times)
+        A. Insertion
+            1. pushAtFront: 5167
+            2. pushAtBack: 6125
+            3. insertAtMiddle: 2313375
+        B. Removal
+            1. popFromBack: 7334
+            2. popFromFront: 9959 
+            3. removeAtMiddle: 3918083
+        C. Access
+            1. last: 500
+            2. first: 583
+            3. elementAtMiddle: 8864209
+
+    2. Rankings Discussion
+        -For insertion, removal, and access at the back and front, it makes 
+        sense that they are all relatively short, because we can directly
+        access them by storing front and back pointers. Insertion, removal 
+        and access in the middle takes a while because we have to iterate 
+        through each link in the lists to get there.
+
+    3. HW2 vs HW1
+        -Compared to arraylists, linked lists are slower when it comes to
+        directly accessing elements within the list, but are much faster
+        when it comes to adding or removing elements, becuae there is
+        no "shifting around" that has to be done like for arraylists.
+
+Other Questions:
+----------------------
+    
+    1.  Anything that involved adding or removing elements was easier 
+        to implement, because we didn't have to consider shifting the 
+        other elements in the list around to "make room" for the insterted 
+        ones, for example.
+
+    2.  It was more difficult to get to the index that was given, in order
+        to perfomr some action at that given index. This is because in 
+        order to do so, we have to iterate through the linked list, 
+        rather than just goinf directly to that index.
+
+    3.  They shouldn't have to make changes as on the client side,
+        they should be interacting with them exactly the same way.
+    

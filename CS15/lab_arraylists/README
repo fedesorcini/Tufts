@@ -1,0 +1,112 @@
+/*******************************************************************************
+* LAB 1: unit_test and ArrayList
+* Comp 15 Fall 2023
+* README
+* Author: Federico Sorcini, fsorci01
+*******************************************************************************/
+
+
+Program Purpose:
+---------------
+
+    The purpose of this program is to give the user the ability to create 
+    ArrayLists that can store data. The user can modify the ArrayLists in 
+    mutliple ways such as adding elements to it, removing elements from it, 
+    checking the size of the array, and finding specific elements in the array.
+
+Compile/run:
+-----------
+
+    Compile and Run using the command "unit_tests"
+
+
+Acknowledgments:
+---------------
+
+    The lectures on Canvas!
+
+Files:
+-----
+
+ArrayList.h: Interface for a simple ArrayList Class.
+
+ArrayList.cpp: Implementation of a simple ArrayList Class.
+    The default constructor for this class initializes an ArrayList to a 
+    size of 0, and a capacity of 10. 
+
+unit_tests.h: A unit testing file for the ArrayList Class. 
+    Runs in conjunction with the unit_test framework to allow for testing 
+    of individual functions.
+
+Makefile: File to build the program.
+
+
+Data Structures:
+---------------
+
+    This main data structure of this lab is an ArrayList, which is a 
+    dynamically expanding array. If the number of items is ever equal to 
+    the capacity, the array will automatically expand, allowing for an 
+    arbitrary number of elements to be inserted into the ArrayList.
+
+
+Testing:
+-------
+
+    I tested the ArrayList program using the "unit_tests.cpp" file. For 
+    each function I defined, I tested it using very simple tests. For all 
+    tests, I made sure to print some result to cout to visibly ensure that 
+    they performed the way I had intended. 
+    -The tests for the constructors were already given to me. 
+    -The isEmpty test was also very simple as it just needed to return 
+    true (the function took care of the rest). 
+    -The toString test was provided to me, but in the function itself I had 
+    to ensure that a comma was added after each printed element UNLESS it 
+    was the last element. 
+    -The pushAtBack test was also simple as I added 1 element to the 
+    arraylist and checked to see if the size of the arraylist was equal to 1. 
+    -Similarly, for the expand test I added 6 elements to the arraylist 
+    (1,2,3,4,5,6) and then checked to see if the size of the arraylist was 
+    equal to the number of elements I had added to it (6). I also printed 
+    out the arraylist to ensure it printed out "(1,2,3,4,5,6)". 
+    -To test the find function I added 6 elements to the arraylist and then 
+    check to see if the find function returned true when I asked it to find 
+    an element I had added, and false when I asked it to find an element I 
+    had NOT added. 
+    -Finally, to test the popFromBack function I added 8 elements to an 
+    arraylist, called the popFromBack function, and checked whether the size 
+    of the arraylist was equal to 7.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
